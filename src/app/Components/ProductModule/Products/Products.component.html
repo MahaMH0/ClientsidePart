@@ -1,0 +1,37 @@
+<h1>{{store.Name}}</h1>
+<img [src]="store.Logo" />
+<h3 *ngIf="Discount!='No Discount'">We offer an explicit discount of: {{Discount}} </h3>
+<div class="container">
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [hidden]="item.quantity==0" *ngFor="let item of ProductListForCategory"
+      [ngStyle]="{'background-color':item.quantity==1? 
+      'lightyellow':'white'}">
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.quantity}}</td>
+        <td><img ProductCard src="{{item.img}}"/></td>
+        <td>
+          <a name="" id="" class="btn btn-dark"
+            role="button" [routerLink]="['/Product/Details/', item.id]" mat-mini-fab>Details</a>
+        </td>
+        <td>
+          <a name="" id="" class="btn btn-dark"
+            role="button" [routerLink]="['/Product/EditProduct', item.id]">Edit</a>
+        </td>
+        <td>
+          <a name="" id="" class="btn btn-danger"
+            role="button" (click)="DeleteProduct(item.id)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
